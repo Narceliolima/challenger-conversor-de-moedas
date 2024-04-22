@@ -9,6 +9,5 @@ public class Main {
 		UserInteraction user = new UserInteraction();
 		
 		user.requestExchange();
-
 	}
 }

@@ -8,8 +8,9 @@ public class UserInteraction {
 	
 	private Scanner sc = new Scanner(System.in);
 	private String apiUrl = "https://v6.exchangerate-api.com/v6/df296b1c45038de8d7f4a05c/latest/";
-	private GsonProcessor gsonProce = new GsonProcessor(apiUrl, "Nomearquivo");
+	private GsonProcessor gsonProce = new GsonProcessor(apiUrl);
 	private ExchangeConverter converter = null;
+	private LogFileHandler logWritter = new LogFileHandler("coinConverter.log");
 	private String[] menuItens = {"BRL", "USD", "EUR", "JPY", "GBP", "AUD", "CAD", "ARS", "CLP", "COP", "BOB"};
 	private String[] moneyNameList = {"Real Brasileiro", "Dolar Americano", "Euro", "Yenes", "Libra Esterlina", "Dolar Australiano",
 									"Dolar Canadence", "Peso Argentino", "Peso Chileno", "Peso Colombiano",
@@ -46,12 +47,8 @@ public class UserInteraction {
 		double valueConverted = converter.convert(menuItens[secondOption], thirdOption);
 		
 		System.out.printf("O valor %s esta valendo em %s %.2f\n",moneyNameList[secondOption], moneyNameList[firstOption], valueConverted);
+		logWritter.fileDataWritter(menuItens[secondOption]+" -> "+menuItens[firstOption]+" : "+valueConverted);
 		
 		sc.close();
 	}
-	
-//	public void responseCep(Cep cep) {
-//		
-//		System.out.println(gsonProce.setJsonCepData(cep));
-//	}
 }

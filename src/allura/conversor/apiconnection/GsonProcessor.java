@@ -9,11 +9,8 @@ public class GsonProcessor {
 
 	private Gson gson = null ;
 	private ConectionRequesterResponser conectionRR = null;
-//	private JsonFileHandler jfs = null;
-//	private <T> defaultCarta = new CartaData(null);
 	
-	public GsonProcessor(String urlToRequest, String fileName) {
-//		this.jfs = new JsonFileHandler(fileName);
+	public GsonProcessor(String urlToRequest) {
 		this.conectionRR = new ConectionRequesterResponser(urlToRequest);
 		this.gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.IDENTITY).setPrettyPrinting().create();
 	}
@@ -47,12 +44,6 @@ public class GsonProcessor {
 	public String setJsonData(Object jsonDataObject) {
 		
 		String jsonDataString = gson.toJson(jsonDataObject);
-		//saveCartaJsonFile(jsonDataString);
 		return jsonDataString;
 	}
-	
-//	private void saveCartaJsonFile(String dataJsonString) {
-//		
-//		jfs.jsonDataWritter(dataJsonString);
-//	}
 }
